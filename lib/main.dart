@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Text('Details');
+                  return const Text('Details');
                 }));
               },
               child: buildRecipeCard(Recipe.samples[index]),
