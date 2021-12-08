@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'recipe.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const RecipeApp());
@@ -43,8 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
           itemCount: Recipe.samples.length,
           itemBuilder: (BuildContext context, int index) {
-
-            return buildRecipeCard(Recipe.samples[index],);
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return Text('Details');
+                }));
+              },
+              child: buildRecipeCard(Recipe.samples[index]),
+            );
           },
         ),
       ),
@@ -53,9 +60,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildRecipeCard(Recipe recipe) {
     return Card(
-        child: Column(children: <Widget>[
-      Image(image: AssetImage(recipe.imageURL)),
-      Text(recipe.label)
-    ]));
+        elevation: 2.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(children: <Widget>[
+            Image(image: AssetImage(recipe.imageURL)),
+            const SizedBox(height: 14.0),
+            Text(
+              recipe.label,
+              style: GoogleFonts.pacifico(
+                textStyle: const TextStyle(
+                    fontSize: 24.0, fontWeight: FontWeight.w700),
+              ),
+            )
+          ]),
+        ));
   }
 }
